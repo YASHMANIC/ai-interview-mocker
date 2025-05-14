@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Mock Interview
 
-## Getting Started
+![AI Mock Interview Banner](https://img.shields.io/badge/AI-Mock%20Interview-blue?style=for-the-badge&logo=next.js)
 
-First, run the development server:
+A sophisticated Next.js application that simulates job interviews using artificial intelligence to help candidates practice and improve their interview skills.
 
+## ✨ Features
+
+- **Realistic AI Interviewers**: Experience interviews with AI personas that mimic real recruiters
+- **Industry-Specific Questions**: Practice with questions tailored to your field
+- **Real-time Feedback**: Get instant analysis on your answers
+- **Interview Recording**: Review your performance with audio/video recordings
+- **Performance Analytics**: Track your improvement over time
+- **Customizable Sessions**: Select interview duration, difficulty, and focus areas
+
+## 🚀 Live Demo
+
+Check out the live demo at [ai-mock-interview.example.com](https://ai-mock-interview.example.com)
+
+## 📸 Screenshots
+
+<div align="center">
+  <img src="/api/placeholder/800/450" alt="AI Mock Interview Dashboard" width="800"/>
+  <p><i>Dashboard with interview statistics and recommendations</i></p>
+  
+  <img src="/api/placeholder/800/450" alt="Interview Session" width="800"/>
+  <p><i>Live interview session with AI interviewer</i></p>
+</div>
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js, React, TailwindCSS ,ShadCn
+- **Backend**:  Node,Bun,Zustand
+- **Authentication**: Next-auth
+- **AI/ML**: Google Gemini API,
+- **Database**: Postgres
+- **Deployment**: Vercel
+
+## 📦 Installation
+
+1. Clone the repository:
 ```bash
+git clone https://github.com/YASHMANIC/ai-interview-mocker.git
+cd ai-interview-mocker
+```
+
+2. Install dependencies:
+```bash
+bun install
+#or
+npm install
+# or
+yarn install
+```
+
+3. Set up environment variables:
+```bash
+cp .env.example .env.local
+```
+Then fill in your API keys and other environment variables.
+
+4. Run the development server:
+```bash
+bun run dev
+#or
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔧 Configuration
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application can be configured through the `.env.local` file:
 
-## Learn More
+```
+NEXT_PUBLIC_API_URL=your_api_url
+GEMINI_API_KEY=your_gemini_api_key
+POSTGRES_URI=your_postgres_connection_string
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 🤝 Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## Deploy on Vercel
+## 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📞 Contact
+
+If you have any questions or feedback, please reach out to [yashmanic96@gmail.com](mailto:yashmanic96@gmail.com).
+
+---
+
+<div align="center">
+  <p>Built with ❤️ by <a href="https://github.com/YASHMANIC">Yaswanth</a></p>
+</div>
