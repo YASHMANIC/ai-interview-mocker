@@ -14,7 +14,7 @@ const Header = () => {
         clearUser(),
         clearAnswers(0,""),
         signOut({
-          callbackUrl: '/signin',
+          callbackUrl: '/',
         })
       }
     const listItems =[{
