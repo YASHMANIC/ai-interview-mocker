@@ -93,14 +93,6 @@ interface Question {
     : <div>
       <h2 className='font-bold'>No Interview Feedback Record Was Found</h2>
     </div>}
-    <div>
-      <Button size={"lg"} className='hover:bg-gray-400 mt-3'
-       onClick={() => {
-        router.push(`/dashboard`)
-      }}>
-        Go Home
-      </Button>
-    </div>
     </div>
   
   )

@@ -10,6 +10,7 @@ import { checkStatus,removeToken,sendVerification } from "@/actions/sendverifica
 import generateToken from "@/context/otp";
 import { toast } from "react-hot-toast";
 import { LoginSchema } from "@/lib/schema";
+import { Button } from "@/components/ui/button";
 
 export default function SignIn() {
     const [error, setError] = useState("");
@@ -115,13 +116,11 @@ export default function SignIn() {
                 </div>
                 {error && <p className="text-white bg-red-400 rounded-lg text-center mb-4 w-full text-lg">{error}</p>}
                 {success && <p className="text-white bg-emerald-400 rounded-lg text-center mb-4 w-full text-lg">{success}</p>}
-                <button 
-                    disabled={loading} 
-                    type="submit" 
-                    className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-200"
-                >
+                <Button type="submit" disabled={loading} className="w-full items-center cursor-pointer" >
+                <div className="flex items-center justify-center  text-white font-bold">
                     {loading ? "Loading..." : "Login"}
-                </button>
+                </div>
+            </Button>
             <div className="flex items-center justify-between mt-2 text-center">
                 <p className="text-gray-950 mt-4 text-sm w-full">
                     Don't have an account?{" "}

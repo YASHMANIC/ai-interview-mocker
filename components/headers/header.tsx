@@ -43,14 +43,14 @@ const Header = () => {
                 </li>
             ))}
         </ul>
-        {path === "dashboard" ? (
-          <Button onClick={handleSignOut} variant="destructive">
-          Sign Out
-        </Button>
-        ) :
-          <Button onClick={() => router.push("/dashboard")} variant="destructive">
+        {path === '/dashboard' ? (
+            <Button onClick={handleSignOut} className='cursor-pointer' variant="destructive">
+                Sign Out
+            </Button>
+        ) : 
+        <Button onClick={() => router.push("/dashboard")} variant="outline" className='bg-blue-600 cursor-pointer'>
           Go Home
-        </Button> 
+        </Button>
         }
     </div>
   )

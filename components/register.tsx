@@ -10,6 +10,7 @@ import { Registerschema } from "@/lib/schema";
 import generateToken from "@/context/otp";
 import { useEmailStore } from "@/store/store";
 import toast from "react-hot-toast";
+import { Button } from "./ui/button";
 
 export const Register = () => {
     const [error, setError] = useState("");
@@ -105,11 +106,11 @@ export const Register = () => {
 
             {error && <p className="text-white bg-red-400 rounded-lg text-center mb-4 w-full text-lg ">{error}</p>}
             {success && <p className="text-white bg-emerald-400 rounded-lg text-center mb-4 w-full text-lg ">{success}</p>}
-            <button type="submit" disabled={loading} className="w-full items-center" >
-                <div className="flex items-center justify-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+            <Button type="submit" disabled={loading} className="w-full items-center cursor-pointer" >
+                <div className="flex items-center justify-center  text-white font-bold">
                     {loading ? "Loading..." : "Register"}
                 </div>
-            </button>
+            </Button>
             <div className="flex items-center justify-between mt-4 text-center">
                 <p className="text-gray-950 mt-4 text-sm w-full">
                     Already have an account?{" "}
