@@ -11,6 +11,17 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  overrides[
+    {
+      // Disable ESLint for generated files
+      files: ['**/generated/**/*.js', '**/generated/**/*.ts'],
+      rules: {
+        '@typescript-eslint/no-unused-vars': 'off',
+        '@typescript-eslint/no-require-imports': 'off',
+        // Add any other rules you want to disable for generated files
+      },
+    }
+  ]
 ];
 
 export default eslintConfig;

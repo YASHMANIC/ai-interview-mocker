@@ -3,7 +3,6 @@ import { getInterviewList } from '@/actions/getInterviewDetails'
 import { useEmailStore } from '@/store/store'
 import React, { useEffect, useState } from 'react'
 import { JsonValue } from '@prisma/client/runtime/library'
-import InterviewListCard from './InterviewListCard'
 import {
   Card,
   CardContent,
