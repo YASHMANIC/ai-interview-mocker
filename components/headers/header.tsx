@@ -3,28 +3,33 @@ import React, { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { signOut } from 'next-auth/react'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useEmailStore } from '@/store/store'
 
 const Header = () => {
   const {clearUser,clearAnswers} = useEmailStore()
     const path = usePathname()
+    const router = useRouter()
     const handleSignOut = () => {
         // Logic to handle sign out
         clearUser(),
         clearAnswers(0,""),
         signOut({
-          callbackUrl: '/',
+          callbackUrl: 'https://ai-interview-mocker-w2lr.onrender.com/sign-in',
         })
       }
     const listItems =[{
         name: 'dashboard',
+        link: "/dashboard"
     },{
-        name:"questions"
+        name:"questions",
+        link:"/"
     },{
-        name:"profile"
+        name:"profile",
+        link:'/'
     },{
-        name:"help"
+        name:"help",
+        link:"/"
     }
     ]
   return (
@@ -38,9 +43,15 @@ const Header = () => {
                 </li>
             ))}
         </ul>
-        <Button onClick={handleSignOut} variant="destructive">
+        {path === "dashboard" ? (
+          <Button onClick={handleSignOut} variant="destructive">
           Sign Out
         </Button>
+        ) :
+          <Button onClick={() => router.push("/dashboard")} variant="destructive">
+          Go Home
+        </Button> 
+        }
     </div>
   )
 }
