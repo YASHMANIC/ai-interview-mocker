@@ -43,8 +43,11 @@ export default function SignIn() {
             email: values.email,
             password: values.password,
             redirect: false,
-            callbackUrl: 'https://ai-interview-mocker-sooty.vercel.app/dashboard'
+            callbackUrl: '/dashboard'
         }).then((data) => {
+            if (data?.ok && data.url) {
+                router.push(data.url); // manually redirect
+              }
             if (data?.error) {
                 if(data.error.match("Please verify your email")) {
                     const token = generateToken();
