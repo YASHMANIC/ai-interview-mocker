@@ -38,7 +38,11 @@ const transporter = nodemailer.createTransport({
         })
 
         if (existingOtp) {
-            return { error: "OTP Already Sent" };
+            const resp =await db.otp.deleteMany({
+                where:{
+                    email:user.email
+                }
+            })
         }
 
         const mailOptions = {

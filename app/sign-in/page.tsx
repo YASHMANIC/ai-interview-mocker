@@ -46,7 +46,7 @@ export default function SignIn() {
             callbackUrl: '/dashboard'
         }).then((data) => {
             if (data?.error) {
-                if(data.error === "Please verify your email") {
+                if(data.error.match("Please verify your email")) {
                     const token = generateToken();
                     sendVerification(values.email,token).then((data) => {
                         if (data?.success && !data?.error) {

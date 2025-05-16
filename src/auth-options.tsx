@@ -20,8 +20,8 @@ export const authOptions:NextAuthOptions = {
                 const user = await db.users.findUnique({
                     where:{email:credentials.email}
                 })
-                if(!user || !user.password){
-                    throw new Error("Invalid Credentials.")
+                if(!user){
+                    throw new Error("No User Found.")
                 }
                 const isCorrectPassword = await bcrypt.compare(credentials.password,user.password)
 

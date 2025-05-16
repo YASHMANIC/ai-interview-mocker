@@ -45,37 +45,42 @@ const InterviewList = () => {
 
     return (
         <div>
-            <h2 className='font-medium text-xl'> Previous Mock Interviews</h2>
-            {interviewList && interviewList.map((item) => (
-              <div key={item.id} className='mt-3'>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{item.position}</CardTitle>
-                    <CardDescription>{item.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p>{item.experience}</p>
-                  </CardContent>
-                  <CardFooter>
-                    <p>{(item.createdAt).toDateString()}</p>
-                  </CardFooter>
-                  <div className='flex items-end justify-end gap-5 ml-4'>
-                    <Button variant={"outline"} className='b-4 p-4'
-                    onClick={() => {
-                      router.push(`/dashboard/interview/${item.id}/feedback`)
-                    }}>
-                      FeedBack
-                    </Button>
-                    <Button className='b-4 p-4'
-                    onClick={() => {
-                      router.push(`/dashboard/interview/${item.id}`)
-                    }}>
-                      Start
-                    </Button>
-                  </div>
-                </Card>
-              </div>
-            ))}
+            {interviewList.length > 0 ? (
+              <>
+              <h2 className='font-medium text-xl'> Previous Mock Interviews</h2>
+              {interviewList && interviewList.map((item) => (
+                <div key={item.id} className='mt-3'>
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>{item.position}</CardTitle>
+                      <CardDescription>{item.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p>{item.experience}</p>
+                    </CardContent>
+                    <CardFooter>
+                      <p>{(item.createdAt).toDateString()}</p>
+                    </CardFooter>
+                    <div className='flex items-end justify-end gap-5 ml-4'>
+                      <Button variant={"outline"} className='b-4 p-4'
+                      onClick={() => {
+                        router.push(`/dashboard/interview/${item.id}/feedback`)
+                      }}>
+                        FeedBack
+                      </Button>
+                      <Button className='b-4 p-4'
+                      onClick={() => {
+                        router.push(`/dashboard/interview/${item.id}`)
+                      }}>
+                        Start
+                      </Button>
+                    </div>
+                  </Card>
+                </div>
+              ))}
+              </>
+            )  : <h2 className='font-medium text-xl'>No Previous Mock Interviews</h2>
+            }
         </div>
     )
 }

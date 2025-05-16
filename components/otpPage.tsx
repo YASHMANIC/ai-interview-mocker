@@ -4,16 +4,23 @@ import { verifyToken,removeToken,updateStatus } from "@/actions/sendverification
 import { useRouter } from "next/navigation";
 import { useEmailStore } from "@/store/store";
 import toast from "react-hot-toast";
+import { sendVerification } from "@/actions/sendverification";
+import generateToken from "@/context/otp";
+import { Button } from "./ui/button";
+
 
 const OtpInput: React.FC = () => {
   const [otp, setOtp] = useState<string>("");
   const [isOtpValid, setIsOtpValid] = useState<boolean>(true);
+  const [timer,setTimer] = useState<number>(30);
+  const [disabled, setDisabled] = useState<Boolean>(true);
   const [isPending, startTransition] = useTransition();
   const [error,setError] = useState<string | undefined>("");
   const [success,setSuccess] = useState<string | undefined>("");
   const router = useRouter();
   const { email, userId } = useEmailStore();
   const inputRefs = useRef<HTMLInputElement[]>([]);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
   // Handle input change
   const handleOtpChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -62,7 +69,60 @@ const OtpInput: React.FC = () => {
     if (otp.length === 6) {
       handleSubmit();
     }
+    countdown();
+    return () => {
+      // Clean up on unmount
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
   }, [otp]);
+
+  const handleResendOtp = async () => {
+    // Restart the timer
+    setDisabled(true);
+    setTimer(30);
+    try {
+      startTransition(async() => {
+        await sendVerification(email,generateToken()).then((res) => {
+          if (res.error) {
+              setError(res.error);
+              toast.error(res.error);
+              setSuccess("");
+              return;
+          } else if (res.success) {
+              toast.success(res.success);
+              countdown()
+              setSuccess(res.success);
+              setError("");
+          }
+      })
+      });
+    } catch (err) {
+      console.error("Error resending OTP:", err);
+      setError("Error resending OTP");
+    }
+  };
+
+  const countdown = () => {
+    setDisabled(true);
+    setTimer(30);
+
+    if (intervalRef.current) clearInterval(intervalRef.current); // Clear any existing interval
+
+    intervalRef.current = setInterval(() => {
+      setTimer((prev) => {
+        if (prev <= 1) {
+          if (intervalRef.current) clearInterval(intervalRef.current);
+          setDisabled(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
+  
+  
+
   return (
     <div className="w-full max-w-sm mx-auto mt-20 p-6 border border-gray-300 rounded-xl shadow-lg">
       <h2 className="text-2xl font-semibold text-center mb-4">Enter OTP</h2>
@@ -98,6 +158,16 @@ const OtpInput: React.FC = () => {
         ))}
       </div>
       {!isOtpValid && <p className="text-red-500 text-sm text-center">OTP must be 6 digits.</p>}
+      <div className="flex flex-col items-center gap-2">
+        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+        <Button
+          disabled={timer > 0}
+          onClick={handleResendOtp}
+          className={`text-sm hover:bg-gray-400 ${timer > 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+        >
+          {timer > 0 ? `Resend OTP in ${timer}s` : 'Resend OTP'}
+        </Button>
+      </div>
     </div>
   );
 };
