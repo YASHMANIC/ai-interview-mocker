@@ -45,9 +45,6 @@ export default function SignIn() {
             redirect: false,
             callbackUrl: '/dashboard'
         }).then((data) => {
-            if (data?.ok && data.url) {
-                router.push(data.url); // manually redirect
-              }
             if (data?.error) {
                 if(data.error.match("Please verify your email")) {
                     const token = generateToken();
