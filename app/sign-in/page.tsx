@@ -43,7 +43,7 @@ export default function SignIn() {
             email: values.email,
             password: values.password,
             redirect: false,
-            callbackUrl: '/dashboard'
+            callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard`
         }).then((data) => {
             if (data?.error) {
                 if(data.error.match("Please verify your email")) {
