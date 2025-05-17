@@ -16,7 +16,7 @@ const Header = () => {
         clearUser(),
         clearAnswers(0,""),
         signOut({
-          callbackUrl: 'https://ai-interview-mocker-sooty.vercel.app/sign-in',
+          callbackUrl: '/sign-in',
         })
       }
     const listItems =[{
