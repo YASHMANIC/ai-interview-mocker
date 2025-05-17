@@ -16,7 +16,7 @@ const Header = () => {
         clearUser(),
         clearAnswers(0,""),
         signOut({
-          callbackUrl: '/sign-in',
+          callbackUrl: process.env.NEXTAUTH_URL,
         })
       }
     const listItems =[{
